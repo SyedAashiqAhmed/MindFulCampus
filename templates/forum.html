@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Forum - MindfulCampus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Emergency Button -->
+    <a href="/crisis" class="emergency-fab" aria-label="Get Help Now">
+        <span class="pulse-ring"></span>
+        🆘
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌸</span>
+                <span class="logo-text">MindfulCampus</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/meditation">Meditate</a></li>
+                <li><a href="/forum" class="active">Community</a></li>
+                <li><a href="/appointments">Counseling</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container forum-page">
+        <!-- Hero Section -->
+        <section class="forum-hero">
+            <div class="glass-card hero-card">
+                <h1 class="hero-title">Peer Support Community</h1>
+                <p class="hero-subtitle">A safe space to share, listen, and support each other 💬</p>
+            </div>
+        </section>
+
+        <!-- Community Guidelines -->
+        <section class="guidelines-section">
+            <div class="glass-card guidelines-card">
+                <h3 class="guidelines-title">💙 Community Guidelines</h3>
+                <ul class="guidelines-list">
+                    <li>Be kind, compassionate, and respectful to everyone</li>
+                    <li>No judgment — everyone's experience is valid</li>
+                    <li>Keep personal information private</li>
+                    <li>Report concerning content to moderators</li>
+                    <li>Remember: This is peer support, not professional therapy</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- New Post Section -->
+        <section class="new-post-section">
+            <div class="glass-card">
+                <h2 class="section-title">Share Your Thoughts</h2>
+                <form class="post-form" id="newPostForm">
+                    <input type="text" class="post-input" id="postTitle" placeholder="Title (optional)" maxlength="100">
+                    <textarea class="post-textarea" id="postContent" placeholder="What's on your mind? Share your feelings, experiences, or ask for support... 💭" rows="4" maxlength="500" required></textarea>
+                    
+                    <div class="post-tags">
+                        <label class="tag-label">Add a tag:</label>
+                        <div class="tags-container">
+                            <button type="button" class="tag-btn" data-tag="stress">Stress</button>
+                            <button type="button" class="tag-btn" data-tag="anxiety">Anxiety</button>
+                            <button type="button" class="tag-btn" data-tag="depression">Depression</button>
+                            <button type="button" class="tag-btn" data-tag="success">Success</button>
+                            <button type="button" class="tag-btn" data-tag="support">Need Support</button>
+                            <button type="button" class="tag-btn" data-tag="grateful">Gratitude</button>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-primary">
+                        <span>Share Post</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Posts Feed -->
+        <section class="posts-section">
+            <h2 class="section-title">Recent Posts</h2>
+            <div class="posts-container" id="postsContainer">
+                <!-- Sample Posts -->
+                <div class="glass-card post-card">
+                    <div class="post-header">
+                        <div class="post-avatar">🌟</div>
+                        <div class="post-meta">
+                            <div class="post-author">Anonymous Student</div>
+                            <div class="post-time">2 hours ago</div>
+                        </div>
+                        <span class="post-tag tag-stress">Stress</span>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">Finals Week Stress</h3>
+                        <p class="post-text">Feeling overwhelmed with exams coming up. Anyone else struggling? How do you all cope?</p>
+                    </div>
+                    <div class="post-footer">
+                        <button class="post-action">💙 Support (12)</button>
+                        <button class="post-action">💬 Reply (5)</button>
+                    </div>
+                </div>
+
+                <div class="glass-card post-card">
+                    <div class="post-header">
+                        <div class="post-avatar">✨</div>
+                        <div class="post-meta">
+                            <div class="post-author">Anonymous Student</div>
+                            <div class="post-time">5 hours ago</div>
+                        </div>
+                        <span class="post-tag tag-success">Success</span>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">Small Win Today!</h3>
+                        <p class="post-text">I finally attended my first therapy session. It was scary but I did it! To anyone hesitating — you've got this! 💪</p>
+                    </div>
+                    <div class="post-footer">
+                        <button class="post-action">💙 Support (28)</button>
+                        <button class="post-action">💬 Reply (8)</button>
+                    </div>
+                </div>
+
+                <div class="glass-card post-card">
+                    <div class="post-header">
+                        <div class="post-avatar">🌸</div>
+                        <div class="post-meta">
+                            <div class="post-author">Anonymous Student</div>
+                            <div class="post-time">1 day ago</div>
+                        </div>
+                        <span class="post-tag tag-anxiety">Anxiety</span>
+                    </div>
+                    <div class="post-content">
+                        <p class="post-text">Has anyone tried the meditation exercises here? Do they actually help with anxiety?</p>
+                    </div>
+                    <div class="post-footer">
+                        <button class="post-action">💙 Support (15)</button>
+                        <button class="post-action">💬 Reply (12)</button>
+                    </div>
+                </div>
+
+                <div class="glass-card post-card">
+                    <div class="post-header">
+                        <div class="post-avatar">💫</div>
+                        <div class="post-meta">
+                            <div class="post-author">Anonymous Student</div>
+                            <div class="post-time">2 days ago</div>
+                        </div>
+                        <span class="post-tag tag-grateful">Gratitude</span>
+                    </div>
+                    <div class="post-content">
+                        <h3 class="post-title">Grateful for This Community</h3>
+                        <p class="post-text">Just wanted to say thank you to everyone here. Knowing I'm not alone makes such a difference. You all are amazing. 💙</p>
+                    </div>
+                    <div class="post-footer">
+                        <button class="post-action">💙 Support (45)</button>
+                        <button class="post-action">💬 Reply (15)</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Moderation Notice -->
+        <section class="moderation-notice">
+            <div class="glass-card notice-card">
+                <p class="notice-text">
+                    🛡️ This forum is moderated by trained peer supporters and mental health professionals. 
+                    All posts are reviewed to ensure safety and respect.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>💙 MindfulCampus - Supporting SDG 3: Good Health and Well-being</p>
+        <p class="footer-note">Together, we're stronger.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/premium-effects.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/forum.js') }}"></script>
+</body>
+</html>

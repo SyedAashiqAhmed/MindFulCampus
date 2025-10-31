@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindfulCampus - Your Mental Wellness Companion</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                        accent: '#4fd1c5',
+                        dark: '#0f1729',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS for Advanced Effects -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #4fd1c5, #63b3ed);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4fd1c5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+        
+        .mood-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .mood-btn:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        
+        .mood-btn.selected {
+            transform: scale(1.1) translateY(-5px);
+        }
+        
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #667eea, #4fd1c5);
+            border-radius: 10px;
+        }
+        
+        /* Floating Particles */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 min-h-screen text-white">
+    
+    <!-- Floating Particles Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="particle text-4xl" style="top: 10%; left: 10%; animation-delay: 0s;">🌸</div>
+        <div class="particle text-3xl" style="top: 20%; right: 15%; animation-delay: 2s;">✨</div>
+        <div class="particle text-4xl" style="bottom: 20%; left: 20%; animation-delay: 4s;">🦋</div>
+        <div class="particle text-3xl" style="top: 60%; right: 10%; animation-delay: 6s;">💫</div>
+        <div class="particle text-4xl" style="bottom: 10%; right: 25%; animation-delay: 8s;">🌺</div>
+    </div>
+
+    <!-- Emergency FAB -->
+    <a href="/crisis" class="fixed bottom-8 right-8 z-50 w-16 h-16 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-all duration-300 animate-pulse-slow">
+        🆘
+    </a>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-strong">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <span class="text-4xl animate-float">🌸</span>
+                    <span class="text-2xl font-bold text-gradient">MindfulCampus</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="text-white hover:text-accent transition-colors font-medium">Home</a>
+                    <a href="/meditation" class="text-gray-300 hover:text-accent transition-colors font-medium">Meditate</a>
+                    <a href="/forum" class="text-gray-300 hover:text-accent transition-colors font-medium">Community</a>
+                    <a href="/appointments" class="text-gray-300 hover:text-accent transition-colors font-medium">Counseling</a>
+                </div>
+                <div class="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+                    <span class="text-2xl">👤</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            
+            <!-- Hero Section -->
+            <div class="text-center mb-16 animate-fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gradient leading-tight">
+                    How are you<br>feeling today?
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
+                    Take a deep breath — you're doing great 💙
+                </p>
+            </div>
+
+            <!-- Mood Tracking Card -->
+            <div class="glass-strong rounded-3xl p-8 md:p-12 mb-12 hover-lift shadow-2xl">
+                <h2 class="text-3xl font-bold mb-8 text-center">Track Your Mood</h2>
+                
+                <!-- Mood Selector Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 md:gap-6 mb-8">
+                    <button class="mood-btn glass rounded-2xl p-6 flex flex-col items-center justify-center space-y-3 hover:bg-white/10 hover:border-accent border-2 border-transparent" data-mood="happy">
+                        <span class="text-5xl md:text-6xl">😊</span>
+                        <span class="text-sm font-medium text-gray-300">Happy</span>
+                    </button>
+                    <button class="mood-btn glass rounded-2xl p-6 flex flex-col items-center justify-center space-y-3 hover:bg-white/10 hover:border-accent border-2 border-transparent" data-mood="calm">
+                        <span class="text-5xl md:text-6xl">😌</span>
+                        <span class="text-sm font-medium text-gray-300">Calm</span>
+                    </button>
+                    <button class="mood-btn glass rounded-2xl p-6 flex flex-col items-center justify-center space-y-3 hover:bg-white/10 hover:border-accent border-2 border-transparent" data-mood="neutral">
+                        <span class="text-5xl md:text-6xl">😐</span>
+                        <span class="text-sm font-medium text-gray-300">Neutral</span>
+                    </button>
+                    <button class="mood-btn glass rounded-2xl p-6 flex flex-col items-center justify-center space-y-3 hover:bg-white/10 hover:border-accent border-2 border-transparent" data-mood="sad">
+                        <span class="text-5xl md:text-6xl">😔</span>
+                        <span class="text-sm font-medium text-gray-300">Sad</span>
+                    </button>
+                    <button class="mood-btn glass rounded-2xl p-6 flex flex-col items-center justify-center space-y-3 hover:bg-white/10 hover:border-accent border-2 border-transparent" data-mood="anxious">
+                        <span class="text-5xl md:text-6xl">😰</span>
+                        <span class="text-sm font-medium text-gray-300">Anxious</span>
+                    </button>
+                    <button class="mood-btn glass rounded-2xl p-6 flex flex-col items-center justify-center space-y-3 hover:bg-white/10 hover:border-accent border-2 border-transparent" data-mood="stressed">
+                        <span class="text-5xl md:text-6xl">😫</span>
+                        <span class="text-sm font-medium text-gray-300">Stressed</span>
+                    </button>
+                    <button class="mood-btn glass rounded-2xl p-6 flex flex-col items-center justify-center space-y-3 hover:bg-white/10 hover:border-accent border-2 border-transparent" data-mood="overwhelmed">
+                        <span class="text-5xl md:text-6xl">😞</span>
+                        <span class="text-sm font-medium text-gray-300">Overwhelmed</span>
+                    </button>
+                </div>
+
+                <!-- Intensity Slider -->
+                <div id="intensitySection" class="hidden mb-8 glass rounded-2xl p-6 animate-fade-in">
+                    <label class="block text-center text-lg font-medium mb-6">How intense is this feeling?</label>
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm text-gray-400 font-medium">Low</span>
+                        <input type="range" min="1" max="10" value="5" id="intensitySlider" class="flex-1 h-3 bg-white/10 rounded-full appearance-none cursor-pointer accent-accent">
+                        <span class="text-sm text-gray-400 font-medium">High</span>
+                    </div>
+                    <div class="text-center mt-4 text-2xl font-bold text-accent">
+                        Level: <span id="intensityValue">5</span>/10
+                    </div>
+                </div>
+
+                <!-- Note Section -->
+                <div id="noteSection" class="hidden mb-8 animate-fade-in">
+                    <label class="block text-lg font-medium mb-4">Want to add a quick note? (optional)</label>
+                    <textarea id="moodNote" rows="3" class="w-full glass rounded-2xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent resize-none" placeholder="What's on your mind...? 💭" maxlength="280"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button id="submitMood" class="hidden w-full bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg animate-fade-in">
+                    <span class="text-lg">Save My Mood ✨</span>
+                </button>
+
+                <!-- Feedback Message -->
+                <div id="feedbackMessage" class="hidden mt-6 p-4 rounded-2xl text-center font-medium animate-fade-in"></div>
+            </div>
+
+            <!-- Recommendations Grid -->
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-3xl font-bold text-gradient">Recommended For You</h2>
+                    <button id="refreshRecommendations" class="px-4 py-2 glass-strong rounded-xl hover:bg-accent/20 transition-all text-sm font-medium">
+                        🔄 Refresh AI
+                    </button>
+                </div>
+                <div id="recommendationsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Recommendations will be loaded here -->
+                </div>
+                <div id="recommendationsStatus" class="mt-4 text-center text-sm text-gray-400"></div>
+            </div>
+
+            <!-- Daily Tip -->
+            <div class="glass-strong rounded-3xl p-8 md:p-12 text-center hover-lift shadow-2xl">
+                <div class="text-5xl mb-4 animate-float">✨</div>
+                <h3 class="text-2xl font-bold mb-4">Today's Wellness Tip</h3>
+                <p id="dailyTip" class="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+                    Loading your personalized tip...
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/tailwind-home.js') }}"></script>
+</body>
+</html>

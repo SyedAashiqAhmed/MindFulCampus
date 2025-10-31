@@ -1,0 +1,197 @@
+{% extends "base-tailwind.html" %}
+
+{% block title %}Crisis Help - MindfulCampus{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    
+    <!-- Hero Section - Red Theme -->
+    <div class="text-center mb-12 bg-gradient-to-br from-red-900/40 to-red-800/40 rounded-3xl p-12 border-2 border-red-500/30">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 text-red-300 leading-tight">
+            You're Not Alone
+        </h1>
+        <p class="text-2xl text-red-200">
+            Help is available right now
+        </p>
+    </div>
+
+    <!-- Emergency Actions -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+        <!-- Call Emergency -->
+        <a href="tel:988" class="glass-strong rounded-2xl p-8 text-center hover-lift bg-red-500/20 border-2 border-red-500 hover:bg-red-500/30 transition-all">
+            <div class="text-6xl mb-4">📞</div>
+            <h3 class="text-xl font-bold mb-2">Call Emergency</h3>
+            <p class="text-3xl font-bold text-red-300 mb-2">988</p>
+            <p class="text-sm text-gray-300">24/7 Crisis Lifeline</p>
+        </a>
+
+        <!-- Text Crisis Line -->
+        <a href="sms:741741&body=HOME" class="glass-strong rounded-2xl p-8 text-center hover-lift bg-accent/20 border-2 border-accent hover:bg-accent/30 transition-all">
+            <div class="text-6xl mb-4">💬</div>
+            <h3 class="text-xl font-bold mb-2">Text Crisis Line</h3>
+            <p class="text-2xl font-bold text-accent mb-2">741741</p>
+            <p class="text-sm text-gray-300">Text "HOME" to start</p>
+        </a>
+
+        <!-- Breathing Exercise -->
+        <button id="breathingBtn" class="glass-strong rounded-2xl p-8 text-center hover-lift bg-primary/20 border-2 border-primary hover:bg-primary/30 transition-all">
+            <div class="text-6xl mb-4">🌬️</div>
+            <h3 class="text-xl font-bold mb-2">Breathing Exercise</h3>
+            <p class="text-lg font-semibold text-primary mb-2">Start Now</p>
+            <p class="text-sm text-gray-300">Calm in 2 minutes</p>
+        </button>
+    </div>
+
+    <!-- Supportive Message -->
+    <div class="glass-strong rounded-3xl p-8 md:p-12 mb-12 text-center">
+        <div class="text-5xl mb-6">💙</div>
+        <h2 class="text-3xl font-bold mb-4">You Matter</h2>
+        <p class="text-lg text-gray-300 leading-relaxed max-w-2xl mx-auto mb-6">
+            Your feelings are valid. What you're going through is real, and it's okay to ask for help. Taking this step shows incredible strength.
+        </p>
+        <button id="okayBtn" class="px-8 py-3 bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent rounded-xl font-semibold transition-all transform hover:scale-105">
+            I'M OKAY
+        </button>
+    </div>
+
+    <!-- 24/7 Helplines -->
+    <div class="mb-12">
+        <h2 class="text-3xl font-bold mb-8 text-center text-gradient">24/7 Helplines & Resources</h2>
+        <div class="space-y-4">
+            <!-- National Suicide Prevention Lifeline -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">National Suicide Prevention Lifeline</h3>
+                        <p class="text-gray-300 mb-3">Free, confidential support 24/7</p>
+                        <a href="tel:988" class="inline-block px-6 py-2 bg-red-500 hover:bg-red-600 rounded-xl font-semibold transition-colors">
+                            📞 Call 988
+                        </a>
+                    </div>
+                    <div class="text-4xl">🆘</div>
+                </div>
+            </div>
+
+            <!-- Crisis Text Line -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Crisis Text Line</h3>
+                        <p class="text-gray-300 mb-3">Text with a trained crisis counselor</p>
+                        <a href="sms:741741&body=HOME" class="inline-block px-6 py-2 bg-accent hover:bg-accent/80 rounded-xl font-semibold transition-colors">
+                            💬 Text HOME to 741741
+                        </a>
+                    </div>
+                    <div class="text-4xl">📱</div>
+                </div>
+            </div>
+
+            <!-- Campus Counseling -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift">
+                <div class="flex items-start justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold mb-2">Campus Counseling Services</h3>
+                        <p class="text-gray-300 mb-3">Professional support from your university</p>
+                        <a href="/appointments" class="inline-block px-6 py-2 bg-primary hover:bg-primary/80 rounded-xl font-semibold transition-colors">
+                            📅 Book Appointment
+                        </a>
+                    </div>
+                    <div class="text-4xl">🏫</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breathing Exercise Overlay -->
+    <div id="breathingOverlay" class="hidden fixed inset-0 bg-black/90 z-50 flex items-center justify-center">
+        <div class="text-center">
+            <h2 class="text-4xl font-bold mb-8">4-7-8 Breathing</h2>
+            <div id="breathingCircleOverlay" class="w-64 h-64 mx-auto rounded-full bg-gradient-to-br from-accent/30 to-primary/30 flex items-center justify-center mb-8 transition-all duration-1000">
+                <div class="text-3xl font-bold" id="breathingTextOverlay">Get Ready</div>
+            </div>
+            <p class="text-xl text-gray-300 mb-8" id="breathingInstructions">Click Start to begin</p>
+            <div class="space-x-4">
+                <button id="startBreathingBtn" class="px-8 py-3 bg-gradient-to-r from-accent to-primary rounded-xl font-semibold hover:scale-105 transition-transform">
+                    Start
+                </button>
+                <button id="closeBreathingBtn" class="px-8 py-3 bg-white/10 hover:bg-white/20 rounded-xl font-semibold transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const breathingBtn = document.getElementById('breathingBtn');
+    const breathingOverlay = document.getElementById('breathingOverlay');
+    const breathingCircleOverlay = document.getElementById('breathingCircleOverlay');
+    const breathingTextOverlay = document.getElementById('breathingTextOverlay');
+    const breathingInstructions = document.getElementById('breathingInstructions');
+    const startBreathingBtn = document.getElementById('startBreathingBtn');
+    const closeBreathingBtn = document.getElementById('closeBreathingBtn');
+    const okayBtn = document.getElementById('okayBtn');
+
+    let breathingInterval = null;
+
+    // Open breathing overlay
+    breathingBtn.addEventListener('click', function() {
+        breathingOverlay.classList.remove('hidden');
+    });
+
+    // Close breathing overlay
+    closeBreathingBtn.addEventListener('click', function() {
+        breathingOverlay.classList.add('hidden');
+        if (breathingInterval) clearInterval(breathingInterval);
+    });
+
+    // Start breathing exercise
+    startBreathingBtn.addEventListener('click', function() {
+        startBreathingBtn.disabled = true;
+        startBreathingBtn.textContent = 'In Progress...';
+        
+        let step = 0;
+        const steps = [
+            { text: 'Breathe In', instruction: 'Through your nose...', duration: 4, scale: 'scale-150' },
+            { text: 'Hold', instruction: 'Keep it in...', duration: 7, scale: 'scale-150' },
+            { text: 'Breathe Out', instruction: 'Through your mouth...', duration: 8, scale: 'scale-100' },
+            { text: 'Rest', instruction: 'Relax...', duration: 2, scale: 'scale-100' }
+        ];
+
+        function runBreathingCycle() {
+            const currentStep = steps[step % steps.length];
+            breathingTextOverlay.textContent = currentStep.text;
+            breathingInstructions.textContent = currentStep.instruction;
+            breathingCircleOverlay.className = `w-64 h-64 mx-auto rounded-full bg-gradient-to-br from-accent/30 to-primary/30 flex items-center justify-center mb-8 transition-all duration-1000 ${currentStep.scale}`;
+            
+            step++;
+            
+            if (step >= steps.length * 3) { // 3 cycles
+                clearInterval(breathingInterval);
+                breathingTextOverlay.textContent = 'Complete! 🌟';
+                breathingInstructions.textContent = 'Great work! You did it.';
+                startBreathingBtn.disabled = false;
+                startBreathingBtn.textContent = 'Start Again';
+            }
+        }
+
+        runBreathingCycle();
+        breathingInterval = setInterval(runBreathingCycle, 4000);
+    });
+
+    // I'm Okay button
+    okayBtn.addEventListener('click', function() {
+        this.textContent = '💙 Good to hear';
+        this.classList.add('bg-green-500');
+        setTimeout(() => {
+            this.textContent = "I'M OKAY";
+            this.classList.remove('bg-green-500');
+        }, 2000);
+    });
+});
+</script>
+{% endblock %}

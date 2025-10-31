@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindfulCampus - Your Mental Wellness Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Emergency Button - Always Visible -->
+    <a href="/crisis" class="emergency-fab" aria-label="Get Help Now">
+        <span class="pulse-ring"></span>
+        🆘
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌸</span>
+                <span class="logo-text">MindfulCampus</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/meditation">Meditate</a></li>
+                <li><a href="/forum">Community</a></li>
+                <li><a href="/appointments">Counseling</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="glass-card hero-card">
+                <h1 class="hero-title">How are you feeling today?</h1>
+                <p class="hero-subtitle">Take a deep breath — you're doing great 💙</p>
+            </div>
+        </section>
+
+        <!-- Mood Tracking Section -->
+        <section class="mood-section">
+            <div class="glass-card">
+                <h2 class="section-title">Track Your Mood</h2>
+                
+                <!-- Emoji Mood Selector -->
+                <div class="mood-selector">
+                    <button class="mood-btn" data-emoji="😊" data-emotion="happy" aria-label="Happy">
+                        <span class="mood-emoji">😊</span>
+                        <span class="mood-label">Happy</span>
+                    </button>
+                    <button class="mood-btn" data-emoji="😌" data-emotion="calm" aria-label="Calm">
+                        <span class="mood-emoji">😌</span>
+                        <span class="mood-label">Calm</span>
+                    </button>
+                    <button class="mood-btn" data-emoji="😐" data-emotion="neutral" aria-label="Neutral">
+                        <span class="mood-emoji">😐</span>
+                        <span class="mood-label">Neutral</span>
+                    </button>
+                    <button class="mood-btn" data-emoji="😔" data-emotion="sad" aria-label="Sad">
+                        <span class="mood-emoji">😔</span>
+                        <span class="mood-label">Sad</span>
+                    </button>
+                    <button class="mood-btn" data-emoji="😰" data-emotion="anxious" aria-label="Anxious">
+                        <span class="mood-emoji">😰</span>
+                        <span class="mood-label">Anxious</span>
+                    </button>
+                    <button class="mood-btn" data-emoji="😫" data-emotion="stressed" aria-label="Stressed">
+                        <span class="mood-emoji">😫</span>
+                        <span class="mood-label">Stressed</span>
+                    </button>
+                    <button class="mood-btn" data-emoji="😞" data-emotion="overwhelmed" aria-label="Overwhelmed">
+                        <span class="mood-emoji">😞</span>
+                        <span class="mood-label">Overwhelmed</span>
+                    </button>
+                </div>
+
+                <!-- Intensity Slider -->
+                <div class="intensity-slider" id="intensitySlider" style="display: none;">
+                    <label class="slider-label">How intense is this feeling?</label>
+                    <div class="slider-container">
+                        <span class="slider-indicator">Low</span>
+                        <input type="range" min="1" max="10" value="5" id="intensityRange" class="slider">
+                        <span class="slider-indicator">High</span>
+                    </div>
+                    <div class="slider-value">Level: <span id="intensityValue">5</span>/10</div>
+                </div>
+
+                <!-- Quick Note -->
+                <div class="mood-note" id="moodNote" style="display: none;">
+                    <label class="note-label">Want to add a quick note? (optional)</label>
+                    <textarea id="noteText" placeholder="What's on your mind...? 💭" rows="3" maxlength="280"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button class="btn-primary" id="submitMood" style="display: none;">
+                    <span>Save My Mood</span>
+                </button>
+
+                <!-- Feedback Message -->
+                <div class="feedback-message" id="feedbackMessage"></div>
+            </div>
+        </section>
+
+        <!-- Recommendations Section -->
+        <section class="recommendations-section">
+            <h2 class="section-title">Recommended for You</h2>
+            <div class="recommendations-grid" id="recommendationsGrid">
+                <!-- Recommendations will be loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Daily Suggestion Box -->
+        <section class="suggestion-section">
+            <div class="glass-card suggestion-card">
+                <div class="suggestion-icon">✨</div>
+                <h3 class="suggestion-title">Today's Wellness Tip</h3>
+                <p class="suggestion-text" id="dailyTip">Loading your personalized tip...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>💙 MindfulCampus - Supporting SDG 3: Good Health and Well-being</p>
+        <p class="footer-note">Your mental health matters. You're not alone.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/premium-effects.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "emoji": "\ud83d\ude14",
+    "emotion": "sad",
+    "intensity": "9",
+    "note": "stress",
+    "timestamp": "2025-10-31T11:58:17.652286"
+  },
+  {
+    "id": 2,
+    "emoji": "\ud83d\ude1e",
+    "emotion": "overwhelmed",
+    "intensity": "10",
+    "note": "",
+    "timestamp": "2025-10-31T11:58:33.126052"
+  },
+  {
+    "id": 3,
+    "emoji": "\ud83d\ude30",
+    "emotion": "anxious",
+    "intensity": "9",
+    "note": "",
+    "timestamp": "2025-10-31T12:19:17.465206"
+  },
+  {
+    "id": 4,
+    "emoji": "\ud83d\ude30",
+    "emotion": "anxious",
+    "intensity": "8",
+    "note": "",
+    "timestamp": "2025-10-31T12:19:33.184289"
+  },
+  {
+    "id": 5,
+    "emoji": "\ud83d\ude10",
+    "emotion": "neutral",
+    "intensity": "8",
+    "note": "",
+    "timestamp": "2025-10-31T12:35:11.141204"
+  },
+  {
+    "id": 6,
+    "emoji": "\ud83d\ude14",
+    "emotion": "sad",
+    "intensity": "6",
+    "note": "",
+    "timestamp": "2025-10-31T12:35:17.500758"
+  },
+  {
+    "id": 7,
+    "emoji": "\ud83d\ude14",
+    "emotion": "sad",
+    "intensity": "8",
+    "note": "",
+    "timestamp": "2025-10-31T12:35:29.846460"
+  },
+  {
+    "id": 8,
+    "emoji": "\ud83d\ude14",
+    "emotion": "sad",
+    "intensity": "8",
+    "note": "",
+    "timestamp": "2025-10-31T12:35:39.560813"
+  },
+  {
+    "id": 9,
+    "emoji": "anxious",
+    "emotion": "anxious",
+    "intensity": 5,
+    "note": "",
+    "timestamp": "2025-10-31T12:40:04.559845"
+  },
+  {
+    "id": 10,
+    "emoji": "stressed",
+    "emotion": "stressed",
+    "intensity": 5,
+    "note": "",
+    "timestamp": "2025-10-31T12:40:12.925113"
+  },
+  {
+    "id": 11,
+    "emoji": "\ud83d\ude14",
+    "emotion": "sad",
+    "intensity": "6",
+    "note": "",
+    "timestamp": "2025-10-31T12:41:44.662378"
+  },
+  {
+    "id": 12,
+    "emoji": "\ud83d\ude0c",
+    "emotion": "calm",
+    "intensity": 5,
+    "note": "",
+    "timestamp": "2025-10-31T12:44:48.603432"
+  },
+  {
+    "id": 13,
+    "emoji": "\ud83d\ude14",
+    "emotion": "sad",
+    "intensity": 5,
+    "note": "bored",
+    "timestamp": "2025-10-31T12:45:06.009555"
+  },
+  {
+    "id": 14,
+    "emoji": "\ud83d\ude14",
+    "emotion": "sad",
+    "intensity": 5,
+    "note": "",
+    "timestamp": "2025-10-31T12:45:26.837706"
+  },
+  {
+    "id": 15,
+    "emoji": "happy",
+    "emotion": "happy",
+    "intensity": 10,
+    "note": "",
+    "timestamp": "2025-10-31T12:51:36.304533"
+  },
+  {
+    "id": 16,
+    "emoji": "happy",
+    "emotion": "happy",
+    "intensity": 10,
+    "note": "",
+    "timestamp": "2025-10-31T12:52:00.048750"
+  },
+  {
+    "id": 17,
+    "emoji": "calm",
+    "emotion": "calm",
+    "intensity": 5,
+    "note": "",
+    "timestamp": "2025-10-31T12:59:05.949053"
+  },
+  {
+    "id": 18,
+    "emoji": "overwhelmed",
+    "emotion": "overwhelmed",
+    "intensity": 10,
+    "note": "",
+    "timestamp": "2025-10-31T12:59:20.681350"
+  },
+  {
+    "id": 19,
+    "emoji": "sad",
+    "emotion": "sad",
+    "intensity": 7,
+    "note": "",
+    "timestamp": "2025-10-31T13:21:38.716017"
+  },
+  {
+    "id": 20,
+    "emoji": "sad",
+    "emotion": "sad",
+    "intensity": 6,
+    "note": "",
+    "timestamp": "2025-10-31T17:22:39.881539"
+  }
+]

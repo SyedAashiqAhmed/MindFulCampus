@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "studentName": "Syed Aashiq Ahmed Ahmed",
+    "studentEmail": "ssaashiq05@gmail.com",
+    "studentPhone": "06381695116",
+    "sessionType": "group",
+    "preferredType": "video",
+    "appointmentDate": "2025-10-31",
+    "appointmentTime": "15:29",
+    "appointmentReason": "ee",
+    "reminderEmail": true,
+    "status": "pending",
+    "createdAt": "2025-10-31T15:25:32.010754"
+  }
+]

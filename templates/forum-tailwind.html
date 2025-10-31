@@ -1,0 +1,248 @@
+{% extends "base-tailwind.html" %}
+
+{% block title %}Community - MindfulCampus{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gradient leading-tight">
+            Peer Support<br>Community
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300">
+            You're not alone. Share, support, connect 💬
+        </p>
+    </div>
+
+    <!-- Community Guidelines -->
+    <div class="glass-strong rounded-3xl p-8 mb-12">
+        <h2 class="text-2xl font-bold mb-4 flex items-center">
+            <span class="text-3xl mr-3">📋</span>
+            Community Guidelines
+        </h2>
+        <div class="grid md:grid-cols-3 gap-4 text-sm">
+            <div class="flex items-start space-x-3">
+                <span class="text-2xl">💙</span>
+                <div>
+                    <p class="font-semibold mb-1">Be Kind & Supportive</p>
+                    <p class="text-gray-400">Treat others with empathy</p>
+                </div>
+            </div>
+            <div class="flex items-start space-x-3">
+                <span class="text-2xl">🔒</span>
+                <div>
+                    <p class="font-semibold mb-1">Respect Privacy</p>
+                    <p class="text-gray-400">Keep conversations confidential</p>
+                </div>
+            </div>
+            <div class="flex items-start space-x-3">
+                <span class="text-2xl">⚠️</span>
+                <div>
+                    <p class="font-semibold mb-1">Report Concerns</p>
+                    <p class="text-gray-400">Flag inappropriate content</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Post Form -->
+    <div class="glass-strong rounded-3xl p-8 mb-12">
+        <h2 class="text-2xl font-bold mb-6">Share Your Thoughts</h2>
+        
+        <form id="newPostForm">
+            <textarea id="postContent" rows="4" class="w-full glass rounded-2xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent resize-none mb-4" placeholder="What's on your mind? Share your experience, ask for support, or celebrate a win... 💭" maxlength="500"></textarea>
+            
+            <div class="flex flex-wrap gap-2 mb-4">
+                <button type="button" class="tag-btn px-4 py-2 rounded-full glass text-sm hover:bg-accent/20 hover:border-accent border-2 border-transparent transition-all" data-tag="Stress">😰 Stress</button>
+                <button type="button" class="tag-btn px-4 py-2 rounded-full glass text-sm hover:bg-accent/20 hover:border-accent border-2 border-transparent transition-all" data-tag="Anxiety">😟 Anxiety</button>
+                <button type="button" class="tag-btn px-4 py-2 rounded-full glass text-sm hover:bg-accent/20 hover:border-accent border-2 border-transparent transition-all" data-tag="Success">🎉 Success</button>
+                <button type="button" class="tag-btn px-4 py-2 rounded-full glass text-sm hover:bg-accent/20 hover:border-accent border-2 border-transparent transition-all" data-tag="Gratitude">🙏 Gratitude</button>
+                <button type="button" class="tag-btn px-4 py-2 rounded-full glass text-sm hover:bg-accent/20 hover:border-accent border-2 border-transparent transition-all" data-tag="Question">❓ Question</button>
+            </div>
+
+            <button type="submit" class="w-full bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105">
+                Post to Community ✨
+            </button>
+        </form>
+    </div>
+
+    <!-- Posts Feed -->
+    <div>
+        <h2 class="text-2xl font-bold mb-6">Recent Posts</h2>
+        <div id="postsFeed" class="space-y-6">
+            <!-- Sample Posts -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center">
+                            <span class="text-lg">👤</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Anonymous Student</p>
+                            <p class="text-sm text-gray-400">2 hours ago</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-full glass text-xs">🎉 Success</span>
+                </div>
+                <p class="text-gray-300 mb-4">Just finished my final exam! Feeling relieved and proud. The breathing exercises from this app really helped me stay calm. Thank you all for the support! 💙</p>
+                <div class="flex items-center space-x-4">
+                    <button class="flex items-center space-x-2 text-gray-400 hover:text-accent transition-colors">
+                        <span>💙</span>
+                        <span class="text-sm">24</span>
+                    </button>
+                    <button class="flex items-center space-x-2 text-gray-400 hover:text-accent transition-colors">
+                        <span>💬</span>
+                        <span class="text-sm">5</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-strong rounded-2xl p-6 hover-lift">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                            <span class="text-lg">👤</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Anonymous Student</p>
+                            <p class="text-sm text-gray-400">5 hours ago</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-full glass text-xs">😰 Stress</span>
+                </div>
+                <p class="text-gray-300 mb-4">Feeling overwhelmed with assignments this week. Anyone else struggling? Would love some tips on how you manage your time and stress.</p>
+                <div class="flex items-center space-x-4">
+                    <button class="flex items-center space-x-2 text-gray-400 hover:text-accent transition-colors">
+                        <span>💙</span>
+                        <span class="text-sm">18</span>
+                    </button>
+                    <button class="flex items-center space-x-2 text-gray-400 hover:text-accent transition-colors">
+                        <span>💬</span>
+                        <span class="text-sm">12</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-strong rounded-2xl p-6 hover-lift">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center">
+                            <span class="text-lg">👤</span>
+                        </div>
+                        <div>
+                            <p class="font-semibold">Anonymous Student</p>
+                            <p class="text-sm text-gray-400">1 day ago</p>
+                        </div>
+                    </div>
+                    <span class="px-3 py-1 rounded-full glass text-xs">🙏 Gratitude</span>
+                </div>
+                <p class="text-gray-300 mb-4">Grateful for this community. Reading everyone's posts makes me feel less alone. We're all in this together! 💪</p>
+                <div class="flex items-center space-x-4">
+                    <button class="flex items-center space-x-2 text-gray-400 hover:text-accent transition-colors">
+                        <span>💙</span>
+                        <span class="text-sm">42</span>
+                    </button>
+                    <button class="flex items-center space-x-2 text-gray-400 hover:text-accent transition-colors">
+                        <span>💬</span>
+                        <span class="text-sm">8</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const newPostForm = document.getElementById('newPostForm');
+    const postContent = document.getElementById('postContent');
+    const tagButtons = document.querySelectorAll('.tag-btn');
+    const postsFeed = document.getElementById('postsFeed');
+    
+    let selectedTag = null;
+
+    // Tag selection
+    tagButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            tagButtons.forEach(b => {
+                b.classList.remove('bg-accent/20', 'border-accent');
+                b.classList.add('border-transparent');
+            });
+            this.classList.add('bg-accent/20', 'border-accent');
+            this.classList.remove('border-transparent');
+            selectedTag = this.dataset.tag;
+        });
+    });
+
+    // Submit post
+    newPostForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const content = postContent.value.trim();
+        if (!content) {
+            alert('Please write something to share');
+            return;
+        }
+
+        // Create new post element
+        const newPost = document.createElement('div');
+        newPost.className = 'glass-strong rounded-2xl p-6 hover-lift';
+        newPost.style.animation = 'fadeIn 0.5s ease';
+        newPost.innerHTML = `
+            <div class="flex items-start justify-between mb-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center">
+                        <span class="text-lg">👤</span>
+                    </div>
+                    <div>
+                        <p class="font-semibold">You</p>
+                        <p class="text-sm text-gray-400">Just now</p>
+                    </div>
+                </div>
+                ${selectedTag ? `<span class="px-3 py-1 rounded-full glass text-xs">${getTagEmoji(selectedTag)} ${selectedTag}</span>` : ''}
+            </div>
+            <p class="text-gray-300 mb-4">${content}</p>
+            <div class="flex items-center space-x-4">
+                <button class="flex items-center space-x-2 text-gray-400 hover:text-accent transition-colors">
+                    <span>💙</span>
+                    <span class="text-sm">0</span>
+                </button>
+                <button class="flex items-center space-x-2 text-gray-400 hover:text-accent transition-colors">
+                    <span>💬</span>
+                    <span class="text-sm">0</span>
+                </button>
+            </div>
+        `;
+
+        // Add to feed
+        postsFeed.insertBefore(newPost, postsFeed.firstChild);
+
+        // Reset form
+        postContent.value = '';
+        tagButtons.forEach(b => {
+            b.classList.remove('bg-accent/20', 'border-accent');
+            b.classList.add('border-transparent');
+        });
+        selectedTag = null;
+
+        // Scroll to new post
+        newPost.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
+    function getTagEmoji(tag) {
+        const emojis = {
+            'Stress': '😰',
+            'Anxiety': '😟',
+            'Success': '🎉',
+            'Gratitude': '🙏',
+            'Question': '❓'
+        };
+        return emojis[tag] || '💭';
+    }
+});
+</script>
+{% endblock %}

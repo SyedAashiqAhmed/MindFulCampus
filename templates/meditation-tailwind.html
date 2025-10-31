@@ -1,0 +1,233 @@
+{% extends "base-tailwind.html" %}
+
+{% block title %}Meditation & Breathing - MindfulCampus{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gradient leading-tight">
+            Find Your<br>Inner Peace
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300">
+            Breathe, relax, let go 🌬️
+        </p>
+    </div>
+
+    <!-- Active Session Card -->
+    <div class="glass-strong rounded-3xl p-8 md:p-12 mb-12 text-center">
+        <div class="mb-8">
+            <!-- Play Button -->
+            <div id="playButton" class="w-32 h-32 md:w-40 md:h-40 mx-auto bg-gradient-to-br from-accent/20 to-primary/20 border-4 border-accent rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-all duration-300 relative">
+                <div class="absolute inset-0 border-2 border-accent rounded-full opacity-30 animate-ping"></div>
+                <span id="playIcon" class="text-6xl md:text-7xl text-accent relative z-10">▶</span>
+            </div>
+        </div>
+
+        <h2 id="sessionTitle" class="text-3xl font-bold mb-4">Select a Session</h2>
+        <p id="sessionDescription" class="text-gray-300 mb-6">Choose from breathing exercises or guided meditations below</p>
+
+        <!-- Progress Bar -->
+        <div id="progressSection" class="hidden mb-6">
+            <div class="w-full h-3 bg-white/10 rounded-full overflow-hidden mb-3">
+                <div id="progressBar" class="h-full bg-gradient-to-r from-accent to-primary transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <div class="flex justify-between text-sm text-gray-400">
+                <span id="currentTime">0:00</span>
+                <span id="totalTime">5:00</span>
+            </div>
+        </div>
+
+        <!-- Breathing Circle -->
+        <div id="breathingCircle" class="hidden">
+            <div class="w-48 h-48 mx-auto rounded-full bg-gradient-to-br from-accent/30 to-primary/30 flex items-center justify-center animate-pulse-slow">
+                <div class="text-2xl font-bold" id="breathingText">Breathe In</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sessions Grid -->
+    <div class="mb-12">
+        <h2 class="text-3xl font-bold mb-8 text-center text-gradient">🌬️ Breathing Exercises</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- 4-7-8 Breathing -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift cursor-pointer session-card" data-type="breathing" data-duration="180" data-title="4-7-8 Breathing" data-desc="Breathe in for 4, hold for 7, exhale for 8">
+                <div class="text-5xl mb-4 text-center animate-float">🌬️</div>
+                <h3 class="text-xl font-bold mb-2">4-7-8 Breathing</h3>
+                <p class="text-gray-300 text-sm mb-3">3 min</p>
+                <p class="text-gray-400 text-sm">Calms your nervous system instantly</p>
+            </div>
+
+            <!-- Box Breathing -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift cursor-pointer session-card" data-type="breathing" data-duration="300" data-title="Box Breathing" data-desc="Equal counts: in, hold, out, hold">
+                <div class="text-5xl mb-4 text-center animate-float" style="animation-delay: 0.2s;">📦</div>
+                <h3 class="text-xl font-bold mb-2">Box Breathing</h3>
+                <p class="text-gray-300 text-sm mb-3">5 min</p>
+                <p class="text-gray-400 text-sm">Used by Navy SEALs for focus</p>
+            </div>
+
+            <!-- Deep Breathing -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift cursor-pointer session-card" data-type="breathing" data-duration="120" data-title="Deep Breathing" data-desc="Simple, deep belly breaths">
+                <div class="text-5xl mb-4 text-center animate-float" style="animation-delay: 0.4s;">💨</div>
+                <h3 class="text-xl font-bold mb-2">Deep Breathing</h3>
+                <p class="text-gray-300 text-sm mb-3">2 min</p>
+                <p class="text-gray-400 text-sm">Quick stress relief</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guided Meditations -->
+    <div>
+        <h2 class="text-3xl font-bold mb-8 text-center text-gradient">🧘 Guided Meditations</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Morning Calm -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift cursor-pointer session-card" data-type="meditation" data-duration="300" data-title="Morning Calm" data-desc="Start your day with peace">
+                <div class="text-5xl mb-4 text-center animate-float">🌅</div>
+                <h3 class="text-xl font-bold mb-2">Morning Calm</h3>
+                <p class="text-gray-300 text-sm mb-3">5 min</p>
+                <p class="text-gray-400 text-sm">Perfect way to start your day</p>
+            </div>
+
+            <!-- Body Scan -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift cursor-pointer session-card" data-type="meditation" data-duration="600" data-title="Body Scan" data-desc="Release tension from head to toe">
+                <div class="text-5xl mb-4 text-center animate-float" style="animation-delay: 0.2s;">🧘</div>
+                <h3 class="text-xl font-bold mb-2">Body Scan</h3>
+                <p class="text-gray-300 text-sm mb-3">10 min</p>
+                <p class="text-gray-400 text-sm">Release physical tension</p>
+            </div>
+
+            <!-- Sleep Preparation -->
+            <div class="glass-strong rounded-2xl p-6 hover-lift cursor-pointer session-card" data-type="meditation" data-duration="900" data-title="Sleep Preparation" data-desc="Drift into peaceful sleep">
+                <div class="text-5xl mb-4 text-center animate-float" style="animation-delay: 0.4s;">🌙</div>
+                <h3 class="text-xl font-bold mb-2">Sleep Preparation</h3>
+                <p class="text-gray-300 text-sm mb-3">15 min</p>
+                <p class="text-gray-400 text-sm">Fall asleep peacefully</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const playButton = document.getElementById('playButton');
+    const playIcon = document.getElementById('playIcon');
+    const sessionTitle = document.getElementById('sessionTitle');
+    const sessionDescription = document.getElementById('sessionDescription');
+    const progressSection = document.getElementById('progressSection');
+    const progressBar = document.getElementById('progressBar');
+    const currentTimeEl = document.getElementById('currentTime');
+    const totalTimeEl = document.getElementById('totalTime');
+    const breathingCircle = document.getElementById('breathingCircle');
+    const breathingText = document.getElementById('breathingText');
+    const sessionCards = document.querySelectorAll('.session-card');
+
+    let isPlaying = false;
+    let currentTime = 0;
+    let totalTime = 300;
+    let interval = null;
+    let currentSession = null;
+
+    // Session card click
+    sessionCards.forEach(card => {
+        card.addEventListener('click', function() {
+            const type = this.dataset.type;
+            const duration = parseInt(this.dataset.duration);
+            const title = this.dataset.title;
+            const desc = this.dataset.desc;
+
+            currentSession = { type, duration, title, desc };
+            totalTime = duration;
+            currentTime = 0;
+
+            sessionTitle.textContent = title;
+            sessionDescription.textContent = desc;
+            totalTimeEl.textContent = formatTime(duration);
+            
+            progressSection.classList.remove('hidden');
+            if (type === 'breathing') {
+                breathingCircle.classList.remove('hidden');
+            } else {
+                breathingCircle.classList.add('hidden');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+
+    // Play/Pause button
+    playButton.addEventListener('click', function() {
+        if (!currentSession) {
+            alert('Please select a session first');
+            return;
+        }
+
+        if (isPlaying) {
+            pauseSession();
+        } else {
+            playSession();
+        }
+    });
+
+    function playSession() {
+        isPlaying = true;
+        playIcon.textContent = '⏸';
+        playButton.classList.add('scale-110');
+
+        interval = setInterval(() => {
+            currentTime++;
+            updateProgress();
+
+            if (currentTime >= totalTime) {
+                completeSession();
+            }
+        }, 1000);
+    }
+
+    function pauseSession() {
+        isPlaying = false;
+        playIcon.textContent = '▶';
+        playButton.classList.remove('scale-110');
+        clearInterval(interval);
+    }
+
+    function completeSession() {
+        pauseSession();
+        playIcon.textContent = '✓';
+        sessionTitle.textContent = 'Session Complete! 🌟';
+        sessionDescription.textContent = 'Great work! You completed the session.';
+
+        setTimeout(() => {
+            playIcon.textContent = '▶';
+            currentTime = 0;
+            updateProgress();
+        }, 3000);
+    }
+
+    function updateProgress() {
+        const progress = (currentTime / totalTime) * 100;
+        progressBar.style.width = progress + '%';
+        currentTimeEl.textContent = formatTime(currentTime);
+
+        // Update breathing text
+        if (currentSession && currentSession.type === 'breathing') {
+            const cycle = currentTime % 20;
+            if (cycle < 4) breathingText.textContent = 'Breathe In';
+            else if (cycle < 11) breathingText.textContent = 'Hold';
+            else if (cycle < 19) breathingText.textContent = 'Breathe Out';
+            else breathingText.textContent = 'Hold';
+        }
+    }
+
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+});
+</script>
+{% endblock %}

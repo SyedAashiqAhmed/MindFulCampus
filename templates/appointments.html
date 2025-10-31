@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counseling Appointments - MindfulCampus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Emergency Button -->
+    <a href="/crisis" class="emergency-fab" aria-label="Get Help Now">
+        <span class="pulse-ring"></span>
+        🆘
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌸</span>
+                <span class="logo-text">MindfulCampus</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/meditation">Meditate</a></li>
+                <li><a href="/forum">Community</a></li>
+                <li><a href="/appointments" class="active">Counseling</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container appointments-page">
+        <!-- Hero Section -->
+        <section class="appointments-hero">
+            <div class="glass-card hero-card">
+                <h1 class="hero-title">Professional Counseling</h1>
+                <p class="hero-subtitle">Taking this step is a sign of strength 💙</p>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="counseling-info">
+            <div class="glass-card info-card">
+                <h3 class="info-title">🌟 Why Counseling?</h3>
+                <p class="info-text">
+                    Professional counselors provide a confidential, judgment-free space to explore your thoughts and feelings. 
+                    Whether you're dealing with stress, anxiety, relationship issues, or just need someone to talk to — help is here.
+                </p>
+                <div class="info-benefits">
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🔒</span>
+                        <span class="benefit-text">100% Confidential</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">🎓</span>
+                        <span class="benefit-text">Licensed Professionals</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">📅</span>
+                        <span class="benefit-text">Flexible Scheduling</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-icon">💰</span>
+                        <span class="benefit-text">Free for Students</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appointment Booking -->
+        <section class="booking-section">
+            <div class="glass-card">
+                <h2 class="section-title">Schedule an Appointment</h2>
+                
+                <form class="appointment-form" id="appointmentForm">
+                    <!-- Personal Info -->
+                    <div class="form-group">
+                        <label class="form-label">Your Name</label>
+                        <input type="text" class="form-input" id="studentName" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="studentEmail" placeholder="your.email@university.edu" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone (optional)</label>
+                        <input type="tel" class="form-input" id="studentPhone" placeholder="(123) 456-7890">
+                    </div>
+
+                    <!-- Appointment Type -->
+                    <div class="form-group">
+                        <label class="form-label">Type of Session</label>
+                        <select class="form-select" id="sessionType" required>
+                            <option value="">Select session type...</option>
+                            <option value="individual">Individual Counseling</option>
+                            <option value="group">Group Therapy</option>
+                            <option value="crisis">Crisis Intervention</option>
+                            <option value="academic">Academic Stress Support</option>
+                            <option value="relationship">Relationship Counseling</option>
+                        </select>
+                    </div>
+
+                    <!-- Preferred Date & Time -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Preferred Date</label>
+                            <input type="date" class="form-input" id="appointmentDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Preferred Time</label>
+                            <select class="form-select" id="appointmentTime" required>
+                                <option value="">Select time...</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Reason (optional) -->
+                    <div class="form-group">
+                        <label class="form-label">What would you like to discuss? (optional)</label>
+                        <textarea class="form-textarea" id="appointmentReason" rows="3" placeholder="Feel free to share what's on your mind... This helps us prepare."></textarea>
+                    </div>
+
+                    <!-- Reminder Preference -->
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="reminderEmail" checked>
+                            <span>Send me email reminders</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <span>Book Appointment</span>
+                    </button>
+                </form>
+
+                <div class="feedback-message" id="appointmentFeedback"></div>
+            </div>
+        </section>
+
+        <!-- Upcoming Appointments -->
+        <section class="upcoming-appointments">
+            <h2 class="section-title">Your Upcoming Appointments</h2>
+            <div class="appointments-list" id="appointmentsList">
+                <div class="glass-card empty-state">
+                    <div class="empty-icon">📅</div>
+                    <p class="empty-text">No appointments scheduled yet.</p>
+                    <p class="empty-subtext">Book your first session above to get started.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources -->
+        <section class="resources-section">
+            <div class="glass-card resources-card">
+                <h3 class="resources-title">Additional Resources</h3>
+                <div class="resources-grid">
+                    <a href="/meditation" class="resource-link">
+                        <span class="resource-icon">🧘</span>
+                        <span class="resource-text">Try Meditation First</span>
+                    </a>
+                    <a href="/forum" class="resource-link">
+                        <span class="resource-icon">💬</span>
+                        <span class="resource-text">Join Peer Support</span>
+                    </a>
+                    <a href="/crisis" class="resource-link">
+                        <span class="resource-icon">🆘</span>
+                        <span class="resource-text">Crisis Resources</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>💙 MindfulCampus - Supporting SDG 3: Good Health and Well-being</p>
+        <p class="footer-note">Professional support is always within reach.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/premium-effects.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/appointments.js') }}"></script>
+</body>
+</html>

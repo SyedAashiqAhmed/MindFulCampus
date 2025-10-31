@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Help Now - MindfulCampus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="crisis-page">
+    <!-- Urgent Header -->
+    <div class="crisis-header">
+        <div class="crisis-header-content">
+            <h1 class="crisis-title">You're Not Alone</h1>
+            <p class="crisis-subtitle">Help is available right now. Someone cares and wants to listen.</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-crisis">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌸</span>
+                <span class="logo-text">MindfulCampus</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/meditation">Meditate</a></li>
+                <li><a href="/forum">Community</a></li>
+                <li><a href="/appointments">Counseling</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container crisis-content">
+        <!-- Immediate Actions -->
+        <section class="immediate-actions">
+            <h2 class="section-title crisis-section-title">Immediate Help</h2>
+            
+            <div class="crisis-actions-grid">
+                <!-- Emergency Call -->
+                <div class="crisis-action-card glass-card emergency-card">
+                    <div class="action-icon">📞</div>
+                    <h3 class="action-title">Call Emergency Services</h3>
+                    <p class="action-description">If you're in immediate danger</p>
+                    <a href="tel:988" class="btn-crisis btn-emergency">
+                        <span>Call 988 Now</span>
+                    </a>
+                </div>
+
+                <!-- Quick Breathing -->
+                <div class="crisis-action-card glass-card breathing-card">
+                    <div class="action-icon">🌬️</div>
+                    <h3 class="action-title">Start Breathing Exercise</h3>
+                    <p class="action-description">Calm your mind right now</p>
+                    <button class="btn-crisis btn-breathing" id="startBreathingBtn">
+                        <span>Begin Breathing</span>
+                    </button>
+                </div>
+
+                <!-- Text Crisis Line -->
+                <div class="crisis-action-card glass-card text-card">
+                    <div class="action-icon">💬</div>
+                    <h3 class="action-title">Text Crisis Line</h3>
+                    <p class="action-description">Text with a trained counselor</p>
+                    <a href="sms:741741&body=HOME" class="btn-crisis btn-text">
+                        <span>Text HOME to 741741</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Breathing Exercise -->
+        <section class="emergency-breathing" id="emergencyBreathing" style="display: none;">
+            <div class="glass-card breathing-exercise-card">
+                <button class="close-breathing" id="closeBreathing" aria-label="Close">✕</button>
+                
+                <h2 class="breathing-title">Focus on Your Breath</h2>
+                <p class="breathing-instruction" id="breathingInstruction">Get ready...</p>
+                
+                <div class="emergency-breath-circle" id="emergencyBreathCircle">
+                    <div class="breath-count" id="breathCount">4</div>
+                </div>
+                
+                <div class="breathing-phase" id="breathingPhase">Preparing...</div>
+                
+                <div class="breathing-controls">
+                    <button class="btn-secondary" id="stopBreathingBtn">Stop</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Helplines -->
+        <section class="helplines-section">
+            <h2 class="section-title">24/7 Helplines & Resources</h2>
+            <div class="helplines-grid" id="helplinesGrid">
+                <!-- Will be populated dynamically -->
+            </div>
+        </section>
+
+        <!-- Supportive Message -->
+        <section class="supportive-message">
+            <div class="glass-card message-card">
+                <div class="message-icon">💙</div>
+                <h3 class="message-heading">You Matter</h3>
+                <p class="message-text">
+                    Your feelings are valid. What you're going through is real, and it's okay to ask for help. 
+                    Taking this step shows incredible strength. There are people who care about you and want to support you.
+                </p>
+                <p class="message-text">
+                    This difficult moment will pass. You've survived every bad day so far, and you can get through this one too.
+                </p>
+            </div>
+        </section>
+
+        <!-- Return to Calm -->
+        <section class="return-section">
+            <div class="glass-card return-card">
+                <h3 class="return-title">Ready to Continue Your Wellness Journey?</h3>
+                <div class="return-actions">
+                    <a href="/" class="btn-secondary">Return Home</a>
+                    <a href="/meditation" class="btn-primary">Try Meditation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>💙 MindfulCampus - Supporting SDG 3: Good Health and Well-being</p>
+        <p class="footer-note">Crisis support available 24/7. You are never alone.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/premium-effects.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/crisis.js') }}"></script>
+</body>
+</html>

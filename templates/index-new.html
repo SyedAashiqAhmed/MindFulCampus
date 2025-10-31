@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindfulCampus - Your Mental Wellness Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/new-design.css') }}">
+</head>
+<body>
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="app-logo">
+                <span class="app-logo-icon">🌸</span>
+                <span>MindfulCampus</span>
+            </div>
+            <div class="user-avatar">
+                👤
+            </div>
+        </header>
+
+        <!-- Cards Grid -->
+        <div class="cards-grid">
+            <!-- Mood Tracking Card -->
+            <div class="card mood-card">
+                <h2 class="card-title">How are you<br>feeling today?</h2>
+                
+                <div class="mood-emojis">
+                    <button class="mood-emoji-btn" data-mood="anxious">
+                        <span>😟</span>
+                        <span class="mood-label">Anxious</span>
+                    </button>
+                    <button class="mood-emoji-btn" data-mood="calm">
+                        <span>😌</span>
+                        <span class="mood-label">Calm</span>
+                    </button>
+                    <button class="mood-emoji-btn" data-mood="stressed">
+                        <span>😫</span>
+                        <span class="mood-label">Stressed</span>
+                    </button>
+                    <button class="mood-emoji-btn" data-mood="tired">
+                        <span>😴</span>
+                        <span class="mood-label">Tired</span>
+                    </button>
+                </div>
+
+                <button class="log-mood-btn" id="logMoodBtn">Log mood</button>
+
+                <div class="breathing-suggestion">
+                    <p>Try a 2-minute deep breathing — you deserve calm.</p>
+                    <div class="breathing-wave"></div>
+                    <div class="quick-links">
+                        <a href="/meditation" class="quick-link">Meditate</a>
+                        <a href="/meditation" class="quick-link">Breathing</a>
+                        <a href="/appointments" class="quick-link">Schedule</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Meditation Player Card -->
+            <div class="card meditation-card">
+                <div class="play-button" id="playButton">
+                    <span class="play-icon">▶</span>
+                </div>
+                
+                <h3 class="session-title">Deep Calm Session - 5 min</h3>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <div class="session-duration">
+                    <span id="currentTime">0:00</span>
+                    <span id="totalTime">5:00</span>
+                </div>
+                
+                <p style="color: var(--text-secondary); margin: 1rem 0;">Recommended before exams</p>
+                
+                <div class="session-tags">
+                    <span class="session-tag">Subtitles</span>
+                    <span class="session-tag">Voice Guide</span>
+                    <span class="session-tag">Favorite</span>
+                </div>
+            </div>
+
+            <!-- Crisis Help Card -->
+            <div class="card crisis-card">
+                <h2 class="crisis-title">Need help right now?</h2>
+                <p class="crisis-subtitle">You're not alone</p>
+                
+                <div class="crisis-buttons">
+                    <a href="tel:988" class="crisis-btn crisis-btn-primary">
+                        <span>📞</span>
+                        <span>CALL EMERGENCY</span>
+                    </a>
+                    
+                    <a href="/crisis" class="crisis-btn crisis-btn-secondary">
+                        <span>💬</span>
+                        <span>CONTACT COUNSELOR</span>
+                    </a>
+                    
+                    <button class="crisis-btn crisis-btn-tertiary" id="breathingBtn">
+                        <span>🌬️</span>
+                        <span>BREATHING EXERCISE</span>
+                    </button>
+                </div>
+                
+                <div class="crisis-message">
+                    <p>Take a deep breath.<br>We're here for you.</p>
+                    <button class="ok-btn">I'M OKAY</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/new-design.js') }}"></script>
+</body>
+</html>

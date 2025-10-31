@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}MindfulCampus{% endblock %}</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                        accent: '#4fd1c5',
+                        dark: '#0f1729',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'gradient': 'gradient 8s ease infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        gradient: {
+                            '0%, 100%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4fd1c5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #667eea, #4fd1c5);
+            border-radius: 10px;
+        }
+        
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.3;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        {% block extra_css %}{% endblock %}
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 min-h-screen text-white">
+    
+    <!-- Floating Particles -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="particle text-4xl" style="top: 10%; left: 10%; animation-delay: 0s;">🌸</div>
+        <div class="particle text-3xl" style="top: 20%; right: 15%; animation-delay: 2s;">✨</div>
+        <div class="particle text-4xl" style="bottom: 20%; left: 20%; animation-delay: 4s;">🦋</div>
+        <div class="particle text-3xl" style="top: 60%; right: 10%; animation-delay: 6s;">💫</div>
+        <div class="particle text-4xl" style="bottom: 10%; right: 25%; animation-delay: 8s;">🌺</div>
+    </div>
+
+    <!-- Emergency FAB -->
+    <a href="/crisis" class="fixed bottom-8 right-8 z-50 w-16 h-16 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-3xl shadow-2xl hover:scale-110 transition-all duration-300 animate-pulse-slow">
+        🆘
+    </a>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 glass-strong">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-3">
+                    <span class="text-4xl animate-float">🌸</span>
+                    <span class="text-2xl font-bold text-gradient">MindfulCampus</span>
+                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="{% if request.path == '/' %}text-accent{% else %}text-gray-300{% endif %} hover:text-accent transition-colors font-medium">Home</a>
+                    <a href="/meditation" class="{% if request.path == '/meditation' %}text-accent{% else %}text-gray-300{% endif %} hover:text-accent transition-colors font-medium">Meditate</a>
+                    <a href="/forum" class="{% if request.path == '/forum' %}text-accent{% else %}text-gray-300{% endif %} hover:text-accent transition-colors font-medium">Community</a>
+                    <a href="/appointments" class="{% if request.path == '/appointments' %}text-accent{% else %}text-gray-300{% endif %} hover:text-accent transition-colors font-medium">Counseling</a>
+                </div>
+                <div class="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+                    <span class="text-2xl">👤</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="relative z-10 pt-32 pb-20 px-6">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 py-8 text-center text-gray-400">
+        <p class="mb-2">💙 MindfulCampus - Supporting SDG 3: Good Health and Well-being</p>
+        <p class="text-sm">Your mental health matters. You're not alone.</p>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

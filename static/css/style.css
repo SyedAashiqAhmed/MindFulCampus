@@ -1,0 +1,137 @@
+/* ============================================
+   MindfulCampus - Main Stylesheet
+   A mental health & wellness app for university students
+   Supporting SDG 3: Good Health and Well-being
+   ============================================ */
+
+/* Import all CSS modules */
+@import url('base.css');
+@import url('components.css');
+@import url('pages.css');
+@import url('animations.css');
+@import url('premium-ui.css');
+@import url('improved-home.css');
+
+/* Additional Global Styles */
+body {
+    position: relative;
+}
+
+/* Ensure proper stacking context */
+.main-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Checkbox Styling */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--accent-teal);
+}
+
+/* Return Actions */
+.return-card {
+    text-align: center;
+    padding: var(--spacing-xl);
+}
+
+.return-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-lg);
+}
+
+.return-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+/* Notice Card */
+.notice-card {
+    background: rgba(79, 209, 197, 0.1);
+    border-left: 4px solid var(--accent-teal);
+}
+
+.notice-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Calming Message */
+.calming-message {
+    margin: var(--spacing-xl) 0;
+}
+
+.message-card .message-text {
+    font-size: 1.15rem;
+    line-height: 1.8;
+}
+
+/* Meditation Library */
+.meditation-library {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Breathing Controls */
+.breathing-controls {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+/* Supportive Message */
+.supportive-message {
+    margin: var(--spacing-xl) 0;
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .emergency-fab,
+    .footer {
+        display: none;
+    }
+    
+    .main-container {
+        padding-top: var(--spacing-md);
+    }
+    
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .glass-card {
+        border-width: 2px;
+    }
+    
+    .btn-primary,
+    .btn-secondary,
+    .btn-crisis {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Dark Mode Support (already dark by default) */
+@media (prefers-color-scheme: light) {
+    /* Users who prefer light mode can see a slightly lighter version */
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+}

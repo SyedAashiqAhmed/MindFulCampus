@@ -1,0 +1,158 @@
+{% extends "base-tailwind.html" %}
+
+{% block title %}Counseling - MindfulCampus{% endblock %}
+
+{% block content %}
+<div class="max-w-5xl mx-auto">
+    
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 text-gradient leading-tight">
+            Professional<br>Counseling
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-300">
+            Book a session with our caring counselors 📅
+        </p>
+    </div>
+
+    <!-- Booking Form -->
+    <div class="glass-strong rounded-3xl p-8 md:p-12 mb-12">
+        <h2 class="text-3xl font-bold mb-8 text-center">Schedule Your Session</h2>
+        
+        <form id="appointmentForm" class="space-y-6">
+            <!-- Personal Info -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Full Name *</label>
+                    <input type="text" id="studentName" required class="w-full glass rounded-xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="Your name">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Email *</label>
+                    <input type="email" id="studentEmail" required class="w-full glass rounded-xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="your.email@university.edu">
+                </div>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium mb-2">Phone Number</label>
+                <input type="tel" id="studentPhone" class="w-full glass rounded-xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent" placeholder="(123) 456-7890">
+            </div>
+
+            <!-- Session Type -->
+            <div>
+                <label class="block text-sm font-medium mb-2">Session Type *</label>
+                <select id="sessionType" required class="w-full glass rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent">
+                    <option value="">Select a session type</option>
+                    <option value="individual">Individual Counseling</option>
+                    <option value="group">Group Therapy</option>
+                    <option value="crisis">Crisis Intervention</option>
+                    <option value="academic">Academic Stress Support</option>
+                    <option value="relationship">Relationship Counseling</option>
+                </select>
+            </div>
+
+            <!-- Preferred Meeting Type -->
+            <div>
+                <label class="block text-sm font-medium mb-2">Preferred Meeting Type *</label>
+                <div class="grid grid-cols-3 gap-4">
+                    <label class="glass rounded-xl p-4 cursor-pointer hover:bg-accent/20 transition-all border-2 border-transparent has-[:checked]:border-accent has-[:checked]:bg-accent/10">
+                        <input type="radio" name="preferredType" value="video" class="hidden peer" checked>
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">📹</div>
+                            <div class="text-sm font-medium">Video Call</div>
+                        </div>
+                    </label>
+                    <label class="glass rounded-xl p-4 cursor-pointer hover:bg-accent/20 transition-all border-2 border-transparent has-[:checked]:border-accent has-[:checked]:bg-accent/10">
+                        <input type="radio" name="preferredType" value="chat" class="hidden peer">
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">💬</div>
+                            <div class="text-sm font-medium">Chat</div>
+                        </div>
+                    </label>
+                    <label class="glass rounded-xl p-4 cursor-pointer hover:bg-accent/20 transition-all border-2 border-transparent has-[:checked]:border-accent has-[:checked]:bg-accent/10">
+                        <input type="radio" name="preferredType" value="in-person" class="hidden peer">
+                        <div class="text-center">
+                            <div class="text-3xl mb-2">🏥</div>
+                            <div class="text-sm font-medium">In-Person</div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Date & Time -->
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">Preferred Date *</label>
+                    <input type="date" id="appointmentDate" required class="w-full glass rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Preferred Time *</label>
+                    <input type="time" id="appointmentTime" required class="w-full glass rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent">
+                </div>
+            </div>
+
+            <!-- Reason (Optional) -->
+            <div>
+                <label class="block text-sm font-medium mb-2">Brief Description (Optional)</label>
+                <textarea id="appointmentReason" rows="3" class="w-full glass rounded-xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent resize-none" placeholder="What would you like to discuss? (This is confidential)"></textarea>
+            </div>
+
+            <!-- Reminder -->
+            <div class="flex items-center space-x-3">
+                <input type="checkbox" id="reminderEmail" checked class="w-5 h-5 accent-accent">
+                <label for="reminderEmail" class="text-sm">Send me email reminders</label>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105">
+                Book Appointment ✨
+            </button>
+
+            <!-- Feedback Message -->
+            <div id="appointmentFeedback" class="hidden mt-4 p-4 rounded-2xl text-center font-medium"></div>
+        </form>
+    </div>
+
+    <!-- Upcoming Appointments -->
+    <div>
+        <h2 class="text-3xl font-bold mb-8 text-center text-gradient">Your Appointments</h2>
+        <div id="appointmentsList" class="space-y-4">
+            <!-- Appointments will be loaded here -->
+            <div class="glass-strong rounded-2xl p-6 text-center">
+                <div class="text-5xl mb-4">📅</div>
+                <p class="text-gray-300">No appointments scheduled yet.</p>
+                <p class="text-sm text-gray-400 mt-2">Book your first session above to get started.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Add visual feedback for radio button selection
+document.addEventListener('DOMContentLoaded', function() {
+    const radioLabels = document.querySelectorAll('label:has(input[name="preferredType"])');
+    
+    radioLabels.forEach(label => {
+        const radio = label.querySelector('input[type="radio"]');
+        
+        // Set initial state
+        if (radio.checked) {
+            label.classList.add('border-accent', 'bg-accent/10');
+        }
+        
+        // Handle clicks
+        label.addEventListener('click', function() {
+            // Remove active state from all
+            radioLabels.forEach(l => {
+                l.classList.remove('border-accent', 'bg-accent/10');
+            });
+            // Add active state to clicked
+            this.classList.add('border-accent', 'bg-accent/10');
+        });
+    });
+});
+</script>
+<script src="{{ url_for('static', filename='js/appointments.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meditation & Breathing - MindfulCampus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Emergency Button -->
+    <a href="/crisis" class="emergency-fab" aria-label="Get Help Now">
+        <span class="pulse-ring"></span>
+        🆘
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🌸</span>
+                <span class="logo-text">MindfulCampus</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/meditation" class="active">Meditate</a></li>
+                <li><a href="/forum">Community</a></li>
+                <li><a href="/appointments">Counseling</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-container meditation-page">
+        <!-- Hero Section -->
+        <section class="meditation-hero">
+            <div class="glass-card hero-card">
+                <h1 class="hero-title">Find Your Inner Peace</h1>
+                <p class="hero-subtitle">Breathe, relax, and let go of stress 🌬️</p>
+            </div>
+        </section>
+
+        <!-- Active Session Display -->
+        <section class="active-session" id="activeSession" style="display: none;">
+            <div class="glass-card session-card">
+                <button class="close-session" id="closeSession" aria-label="Close session">✕</button>
+                
+                <div class="session-content">
+                    <h2 class="session-title" id="sessionTitle">Morning Calm</h2>
+                    <p class="session-description" id="sessionDescription">Start your day with peaceful energy</p>
+                    
+                    <!-- Progress Circle -->
+                    <div class="progress-container">
+                        <svg class="progress-ring" width="200" height="200">
+                            <circle class="progress-ring-bg" cx="100" cy="100" r="90"></circle>
+                            <circle class="progress-ring-circle" cx="100" cy="100" r="90" id="progressCircle"></circle>
+                        </svg>
+                        <div class="progress-content">
+                            <div class="time-display" id="timeDisplay">5:00</div>
+                            <div class="session-status" id="sessionStatus">Ready to begin</div>
+                        </div>
+                    </div>
+
+                    <!-- Play/Pause Button -->
+                    <button class="play-btn" id="playBtn" aria-label="Start meditation">
+                        <span class="play-icon" id="playIcon">▶</span>
+                    </button>
+
+                    <!-- Breathing Guide (for breathing exercises) -->
+                    <div class="breathing-guide" id="breathingGuide" style="display: none;">
+                        <div class="breath-circle" id="breathCircle">
+                            <div class="breath-text" id="breathText">Breathe In</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meditation Library -->
+        <section class="meditation-library" id="meditationLibrary">
+            <h2 class="section-title">Choose Your Practice</h2>
+            
+            <!-- Quick Breathing Exercises -->
+            <div class="exercise-category">
+                <h3 class="category-title">🌬️ Quick Breathing Exercises</h3>
+                <div class="exercises-grid" id="breathingExercises">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Guided Meditations -->
+            <div class="exercise-category">
+                <h3 class="category-title">🧘 Guided Meditations</h3>
+                <div class="exercises-grid" id="guidedMeditations">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Calming Message -->
+        <section class="calming-message">
+            <div class="glass-card message-card">
+                <p class="message-text">
+                    "Just a few minutes of mindfulness can transform your day. You're investing in yourself, and that's beautiful." 💫
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>💙 MindfulCampus - Supporting SDG 3: Good Health and Well-being</p>
+        <p class="footer-note">Take it one breath at a time.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/premium-effects.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/meditation.js') }}"></script>
+</body>
+</html>

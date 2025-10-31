@@ -1,0 +1,453 @@
+{% extends "base-tailwind.html" %}
+
+{% block title %}Doctor Portal - MindfulCampus{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto">
+    
+    <!-- Hero Section -->
+    <div class="text-center mb-12">
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gradient leading-tight">
+            Doctor Portal
+        </h1>
+        <p class="text-xl text-gray-300">Manage appointments, video calls, and patient requests 👨‍⚕️</p>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+        <div class="glass-strong rounded-2xl p-6 text-center hover-lift">
+            <div class="text-4xl mb-2">📅</div>
+            <div class="text-3xl font-bold text-accent" id="totalAppointments">0</div>
+            <div class="text-sm text-gray-400">Total Appointments</div>
+        </div>
+        <div class="glass-strong rounded-2xl p-6 text-center hover-lift">
+            <div class="text-4xl mb-2">⏳</div>
+            <div class="text-3xl font-bold text-yellow-400" id="pendingAppointments">0</div>
+            <div class="text-sm text-gray-400">Pending Requests</div>
+        </div>
+        <div class="glass-strong rounded-2xl p-6 text-center hover-lift">
+            <div class="text-4xl mb-2">📹</div>
+            <div class="text-3xl font-bold text-blue-400" id="videoCallRequests">0</div>
+            <div class="text-sm text-gray-400">Video Call Requests</div>
+        </div>
+        <div class="glass-strong rounded-2xl p-6 text-center hover-lift">
+            <div class="text-4xl mb-2">💬</div>
+            <div class="text-3xl font-bold text-green-400" id="chatRequests">0</div>
+            <div class="text-sm text-gray-400">Chat Requests</div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap gap-3 mb-8">
+        <button class="filter-tab active px-6 py-3 rounded-xl glass-strong hover:bg-accent/20 transition-all font-medium" data-filter="all">
+            All Appointments
+        </button>
+        <button class="filter-tab px-6 py-3 rounded-xl glass-strong hover:bg-accent/20 transition-all font-medium" data-filter="pending">
+            Pending
+        </button>
+        <button class="filter-tab px-6 py-3 rounded-xl glass-strong hover:bg-accent/20 transition-all font-medium" data-filter="scheduled">
+            Scheduled
+        </button>
+        <button class="filter-tab px-6 py-3 rounded-xl glass-strong hover:bg-accent/20 transition-all font-medium" data-filter="video">
+            Video Calls
+        </button>
+        <button class="filter-tab px-6 py-3 rounded-xl glass-strong hover:bg-accent/20 transition-all font-medium" data-filter="chat">
+            Chat
+        </button>
+    </div>
+
+    <!-- Appointments List -->
+    <div id="appointmentsList" class="space-y-6">
+        <!-- Appointments will be loaded here -->
+    </div>
+
+    <!-- Schedule Meeting Modal -->
+    <div id="scheduleMeetingModal" class="hidden fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-6">
+        <div class="glass-strong rounded-3xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-3xl font-bold">Schedule Meeting</h2>
+                <button id="closeModal" class="text-4xl hover:text-accent transition-colors">&times;</button>
+            </div>
+
+            <form id="scheduleMeetingForm" class="space-y-6">
+                <input type="hidden" id="appointmentId">
+                
+                <!-- Patient Info (Read-only) -->
+                <div class="glass rounded-2xl p-4">
+                    <h3 class="font-semibold mb-2">Patient Information</h3>
+                    <p class="text-gray-300" id="modalPatientName">-</p>
+                    <p class="text-sm text-gray-400" id="modalPatientEmail">-</p>
+                </div>
+
+                <!-- Meeting Type -->
+                <div>
+                    <label class="block text-sm font-medium mb-2">Meeting Type *</label>
+                    <select id="meetingType" required class="w-full glass rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent">
+                        <option value="video">📹 Video Call</option>
+                        <option value="chat">💬 Chat Session</option>
+                        <option value="in-person">🏥 In-Person</option>
+                    </select>
+                </div>
+
+                <!-- Scheduled Date & Time -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Date *</label>
+                        <input type="date" id="scheduledDate" required class="w-full glass rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Time *</label>
+                        <input type="time" id="scheduledTime" required class="w-full glass rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent">
+                    </div>
+                </div>
+
+                <!-- Duration -->
+                <div>
+                    <label class="block text-sm font-medium mb-2">Duration</label>
+                    <select id="duration" class="w-full glass rounded-xl p-4 text-white focus:outline-none focus:ring-2 focus:ring-accent">
+                        <option value="30">30 minutes</option>
+                        <option value="45">45 minutes</option>
+                        <option value="60">60 minutes</option>
+                    </select>
+                </div>
+
+                <!-- Meeting Link (for video/chat) -->
+                <div id="meetingLinkSection">
+                    <label class="block text-sm font-medium mb-2">Meeting Link</label>
+                    <input type="url" id="meetingLink" placeholder="https://meet.google.com/..." class="w-full glass rounded-xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent">
+                    <p class="text-xs text-gray-400 mt-2">For video calls: Google Meet, Zoom, etc.</p>
+                </div>
+
+                <!-- Notes -->
+                <div>
+                    <label class="block text-sm font-medium mb-2">Notes for Patient</label>
+                    <textarea id="doctorNotes" rows="3" class="w-full glass rounded-xl p-4 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent resize-none" placeholder="Any preparation needed, what to expect, etc."></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="flex gap-4">
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105">
+                        Schedule Meeting ✨
+                    </button>
+                    <button type="button" id="cancelModal" class="px-8 py-4 glass-strong rounded-2xl hover:bg-white/10 transition-all">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const appointmentsList = document.getElementById('appointmentsList');
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const scheduleMeetingModal = document.getElementById('scheduleMeetingModal');
+    const scheduleMeetingForm = document.getElementById('scheduleMeetingForm');
+    const closeModal = document.getElementById('closeModal');
+    const cancelModal = document.getElementById('cancelModal');
+    const meetingType = document.getElementById('meetingType');
+    const meetingLinkSection = document.getElementById('meetingLinkSection');
+
+    let appointments = [];
+    let currentFilter = 'all';
+
+    // Load appointments
+    async function loadAppointments() {
+        try {
+            const response = await fetch('/api/doctor/appointments');
+            appointments = await response.json();
+            updateStats();
+            renderAppointments();
+        } catch (error) {
+            console.error('Error loading appointments:', error);
+            appointmentsList.innerHTML = `
+                <div class="glass-strong rounded-2xl p-8 text-center">
+                    <div class="text-5xl mb-4">📭</div>
+                    <p class="text-gray-300">No appointments yet</p>
+                </div>
+            `;
+        }
+    }
+
+    // Update stats
+    function updateStats() {
+        document.getElementById('totalAppointments').textContent = appointments.length;
+        document.getElementById('pendingAppointments').textContent = 
+            appointments.filter(a => a.status === 'pending').length;
+        document.getElementById('videoCallRequests').textContent = 
+            appointments.filter(a => a.preferredType === 'video' || a.meetingType === 'video').length;
+        document.getElementById('chatRequests').textContent = 
+            appointments.filter(a => a.preferredType === 'chat' || a.meetingType === 'chat').length;
+    }
+
+    // Render appointments
+    function renderAppointments() {
+        let filtered = appointments;
+
+        if (currentFilter === 'pending') {
+            filtered = appointments.filter(a => a.status === 'pending');
+        } else if (currentFilter === 'scheduled') {
+            filtered = appointments.filter(a => a.status === 'scheduled');
+        } else if (currentFilter === 'video') {
+            filtered = appointments.filter(a => a.preferredType === 'video' || a.meetingType === 'video');
+        } else if (currentFilter === 'chat') {
+            filtered = appointments.filter(a => a.preferredType === 'chat' || a.meetingType === 'chat');
+        }
+
+        if (filtered.length === 0) {
+            appointmentsList.innerHTML = `
+                <div class="glass-strong rounded-2xl p-8 text-center">
+                    <div class="text-5xl mb-4">📭</div>
+                    <p class="text-gray-300">No ${currentFilter === 'all' ? '' : currentFilter} appointments</p>
+                </div>
+            `;
+            return;
+        }
+
+        appointmentsList.innerHTML = filtered.map(apt => {
+            const statusColors = {
+                'pending': 'bg-yellow-500/20 border-yellow-500 text-yellow-300',
+                'scheduled': 'bg-green-500/20 border-green-500 text-green-300',
+                'completed': 'bg-blue-500/20 border-blue-500 text-blue-300',
+                'cancelled': 'bg-red-500/20 border-red-500 text-red-300'
+            };
+
+            const typeIcons = {
+                'video': '📹',
+                'chat': '💬',
+                'in-person': '🏥',
+                'individual': '👤',
+                'group': '👥'
+            };
+
+            return `
+                <div class="glass-strong rounded-2xl p-6 hover-lift">
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                        <!-- Left: Patient Info -->
+                        <div class="flex-1">
+                            <div class="flex items-start gap-4 mb-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center text-2xl flex-shrink-0">
+                                    👤
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold mb-1">${apt.studentName || 'Anonymous'}</h3>
+                                    <p class="text-sm text-gray-400">${apt.studentEmail || 'No email'}</p>
+                                    ${apt.studentPhone ? `<p class="text-sm text-gray-400">📞 ${apt.studentPhone}</p>` : ''}
+                                </div>
+                            </div>
+
+                            <!-- Appointment Details -->
+                            <div class="space-y-2 mb-4">
+                                <div class="flex items-center gap-2 text-sm">
+                                    <span class="text-gray-400">Type:</span>
+                                    <span class="px-3 py-1 rounded-full glass text-xs">
+                                        ${typeIcons[apt.sessionType] || '📋'} ${apt.sessionType || 'Not specified'}
+                                    </span>
+                                </div>
+                                ${apt.preferredType ? `
+                                <div class="flex items-center gap-2 text-sm">
+                                    <span class="text-gray-400">Preferred:</span>
+                                    <span class="px-3 py-1 rounded-full glass text-xs">
+                                        ${typeIcons[apt.preferredType] || '📋'} ${apt.preferredType}
+                                    </span>
+                                </div>
+                                ` : ''}
+                                <div class="flex items-center gap-2 text-sm">
+                                    <span class="text-gray-400">Requested:</span>
+                                    <span>${apt.appointmentDate || 'Not specified'} at ${apt.appointmentTime || 'Not specified'}</span>
+                                </div>
+                                ${apt.scheduledDate ? `
+                                <div class="flex items-center gap-2 text-sm">
+                                    <span class="text-gray-400">Scheduled:</span>
+                                    <span class="text-accent font-semibold">${apt.scheduledDate} at ${apt.scheduledTime}</span>
+                                </div>
+                                ` : ''}
+                            </div>
+
+                            <!-- Reason -->
+                            ${apt.appointmentReason ? `
+                            <div class="glass rounded-xl p-3 mb-4">
+                                <p class="text-sm text-gray-400 mb-1">Reason:</p>
+                                <p class="text-sm">${apt.appointmentReason}</p>
+                            </div>
+                            ` : ''}
+
+                            <!-- Meeting Link -->
+                            ${apt.meetingLink ? `
+                            <div class="glass rounded-xl p-3 mb-4">
+                                <p class="text-sm text-gray-400 mb-1">Meeting Link:</p>
+                                <a href="${apt.meetingLink}" target="_blank" class="text-sm text-accent hover:underline break-all">
+                                    ${apt.meetingLink}
+                                </a>
+                            </div>
+                            ` : ''}
+
+                            <!-- Doctor Notes -->
+                            ${apt.doctorNotes ? `
+                            <div class="glass rounded-xl p-3">
+                                <p class="text-sm text-gray-400 mb-1">Your Notes:</p>
+                                <p class="text-sm">${apt.doctorNotes}</p>
+                            </div>
+                            ` : ''}
+                        </div>
+
+                        <!-- Right: Status & Actions -->
+                        <div class="flex flex-col items-end gap-3">
+                            <span class="px-4 py-2 rounded-full border-2 ${statusColors[apt.status] || statusColors.pending} text-sm font-semibold">
+                                ${apt.status || 'pending'}
+                            </span>
+
+                            ${apt.status === 'pending' ? `
+                            <button onclick="openScheduleModal('${apt.id}')" class="px-6 py-3 bg-gradient-to-r from-accent to-primary hover:from-primary hover:to-accent rounded-xl font-semibold transition-all transform hover:scale-105">
+                                Schedule Meeting
+                            </button>
+                            ` : ''}
+
+                            ${apt.status === 'scheduled' ? `
+                            <button onclick="openScheduleModal('${apt.id}')" class="px-6 py-3 glass-strong hover:bg-accent/20 rounded-xl font-semibold transition-all">
+                                Reschedule
+                            </button>
+                            <button onclick="markCompleted('${apt.id}')" class="px-6 py-3 glass-strong hover:bg-green-500/20 rounded-xl font-semibold transition-all">
+                                Mark Complete
+                            </button>
+                            ` : ''}
+
+                            <button onclick="cancelAppointment('${apt.id}')" class="px-6 py-3 glass-strong hover:bg-red-500/20 rounded-xl font-semibold transition-all text-sm">
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+
+    // Filter tabs
+    filterTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            filterTabs.forEach(t => t.classList.remove('active', 'bg-accent/20', 'border-accent', 'border-2'));
+            this.classList.add('active', 'bg-accent/20', 'border-accent', 'border-2');
+            currentFilter = this.dataset.filter;
+            renderAppointments();
+        });
+    });
+
+    // Open schedule modal
+    window.openScheduleModal = function(appointmentId) {
+        const apt = appointments.find(a => a.id == appointmentId);
+        if (!apt) return;
+
+        document.getElementById('appointmentId').value = apt.id;
+        document.getElementById('modalPatientName').textContent = apt.studentName || 'Anonymous';
+        document.getElementById('modalPatientEmail').textContent = apt.studentEmail || 'No email';
+        
+        // Pre-fill if rescheduling
+        if (apt.scheduledDate) {
+            document.getElementById('scheduledDate').value = apt.scheduledDate;
+            document.getElementById('scheduledTime').value = apt.scheduledTime;
+        }
+        if (apt.meetingType) {
+            document.getElementById('meetingType').value = apt.meetingType;
+        }
+        if (apt.meetingLink) {
+            document.getElementById('meetingLink').value = apt.meetingLink;
+        }
+        if (apt.doctorNotes) {
+            document.getElementById('doctorNotes').value = apt.doctorNotes;
+        }
+
+        scheduleMeetingModal.classList.remove('hidden');
+    };
+
+    // Close modal
+    closeModal.addEventListener('click', () => scheduleMeetingModal.classList.add('hidden'));
+    cancelModal.addEventListener('click', () => scheduleMeetingModal.classList.add('hidden'));
+
+    // Meeting type change
+    meetingType.addEventListener('change', function() {
+        if (this.value === 'in-person') {
+            meetingLinkSection.classList.add('hidden');
+        } else {
+            meetingLinkSection.classList.remove('hidden');
+        }
+    });
+
+    // Schedule meeting form
+    scheduleMeetingForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const appointmentId = document.getElementById('appointmentId').value;
+        const data = {
+            meetingType: document.getElementById('meetingType').value,
+            scheduledDate: document.getElementById('scheduledDate').value,
+            scheduledTime: document.getElementById('scheduledTime').value,
+            duration: document.getElementById('duration').value,
+            meetingLink: document.getElementById('meetingLink').value,
+            doctorNotes: document.getElementById('doctorNotes').value,
+            status: 'scheduled'
+        };
+
+        try {
+            const response = await fetch(`/api/doctor/appointments/${appointmentId}/schedule`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                scheduleMeetingModal.classList.add('hidden');
+                scheduleMeetingForm.reset();
+                loadAppointments();
+                alert('✅ Meeting scheduled successfully! Patient will be notified.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('❌ Could not schedule meeting. Please try again.');
+        }
+    });
+
+    // Mark completed
+    window.markCompleted = async function(appointmentId) {
+        if (!confirm('Mark this appointment as completed?')) return;
+
+        try {
+            const response = await fetch(`/api/doctor/appointments/${appointmentId}/complete`, {
+                method: 'POST'
+            });
+
+            if (response.ok) {
+                loadAppointments();
+                alert('✅ Appointment marked as completed!');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    // Cancel appointment
+    window.cancelAppointment = async function(appointmentId) {
+        if (!confirm('Cancel this appointment? The patient will be notified.')) return;
+
+        try {
+            const response = await fetch(`/api/doctor/appointments/${appointmentId}/cancel`, {
+                method: 'POST'
+            });
+
+            if (response.ok) {
+                loadAppointments();
+                alert('✅ Appointment cancelled!');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    // Initialize
+    loadAppointments();
+});
+</script>
+{% endblock %}
